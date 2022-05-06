@@ -1,10 +1,10 @@
-import { createGlobalStyle } from 'styled-components'
+import { createGlobalStyle } from "styled-components";
+
+import { colors } from "./colors";
 
 const Global = createGlobalStyle`
-  @font-face {
-    font-family: 'RobotoBold';
-    src: url('/fonts/Roboto-Black.woff2') format('woff2');
-    font-display: fallback;
+  :root {
+    ${colors}
   }
 
   html {
@@ -20,7 +20,7 @@ const Global = createGlobalStyle`
   body {
     margin: 0;
     padding: 0;
-    background: #f8f8f8;
+    background: var(--primary-background);
     width: 100%;
     height: 100%;
   }
@@ -54,6 +54,6 @@ const Global = createGlobalStyle`
     padding: 0;
   }
 
-`
+`;
 
-export default Global
+export default Global;
