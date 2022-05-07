@@ -7,7 +7,7 @@ import {
   UpdateValueFunction,
 } from "../../src/types/forms";
 
-type AssessmentTrackingStore = {
+type ForcePowerState = {
   twoOptionToggle: SliderInput;
   updateToggleValue: UpdateValueFunction;
 };
@@ -15,22 +15,22 @@ type AssessmentTrackingStore = {
 const twoCricuitsOptions: SliderRadioOption[] = [
   {
     id: 0,
-    name: "marketing_nerd",
+    name: "marketing_power",
     value: 0,
-    label: "Marketing Nerd",
+    label: "Marketer",
     isSelected: true,
   },
   {
     id: 1,
-    name: "dev_nerd",
+    name: "dev_power",
     value: 1,
-    label: "Dev Nerd",
+    label: "Developer",
     isSelected: false,
   },
 ];
 
-export const assessmentTrackingStore = create<AssessmentTrackingStore>(
-  (set: SetState<AssessmentTrackingStore>) => ({
+export const forcePowerStore = create<ForcePowerState>(
+  (set: SetState<ForcePowerState>) => ({
     twoOptionToggle: {
       value: 0,
       options: twoCricuitsOptions,
@@ -41,7 +41,7 @@ export const assessmentTrackingStore = create<AssessmentTrackingStore>(
         const name = event.target.name;
 
         switch (name) {
-          case "twoCircuits": {
+          case "forcePower": {
             const optionsCopy = [...state.twoOptionToggle.options];
             const updatedOptions = updateSliderOptions(optionsCopy, value);
 

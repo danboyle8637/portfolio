@@ -21,17 +21,16 @@ const ToggleContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: var(--switch-background-color);
+  background-color: var(--section-background-5);
   border-radius: 16px;
   width: var(--switch-width);
   height: calc(var(--switch-width) / 5);
-  box-shadow: 0 0 0 4px var(--switch-box-shadow);
+  box-shadow: 0 0 0 4px hsla(0, 0%, 0%, 0.3);
   transition: box-shadow 300ms ease-in-out;
   isolation: isolate;
   overflow: hidden;
   &:hover {
-    box-shadow: 0 0 0 4px var(--switch-active-inner-shadow),
-      0 0 0 6px var(--switch-active-outter-shadow);
+    box-shadow: 0 0 0 3px var(--primary-background), 0 0 0 6px var(--accent-1);
   }
 `;
 
@@ -39,7 +38,7 @@ const Knob = styled.span`
   position: absolute;
   top: 50%;
   left: 8px;
-  background: var(--switch-knob-color);
+  background: var(--section-background-2);
   border-radius: 10px;
   width: calc(var(--switch-width) / 2);
   height: 44px;

@@ -9,6 +9,7 @@ const Global = createGlobalStyle`
 
   html {
     box-sizing: border-box;
+    font-size: 62.5%;
   }
 
   *,
@@ -33,20 +34,20 @@ const Global = createGlobalStyle`
   h1 {
     margin: 0;
     padding: 0;
-    font-family: RobotoBold, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     font-size: 40px;
   }
 
-  h3, h4, h5 {
+  h2, h3, h4, h5 {
     margin: 0;
     padding: 0;
-    font-family: RobotoBold, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   }
 
   p {
     margin: 0;
     padding: 0;
-    font-family: sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   }
 
   button {

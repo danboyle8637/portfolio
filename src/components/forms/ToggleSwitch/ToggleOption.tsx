@@ -9,7 +9,6 @@ interface OptionProps {
   updateToggleValue: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-// TODO - Chagne out the colors
 const OptionLabel = styled.label`
   margin: 0;
   padding: 0;
@@ -41,11 +40,11 @@ export const ToggleOption: React.FC<OptionProps> = ({
   updateToggleValue,
 }) => {
   const switchLabelOnStyles = {
-    "--switch-label-color": "var(--switch-label-active)",
+    "--switch-label-color": "var(--base-text-color)",
   } as CSSProperties;
 
   const switchLabelOffStyles = {
-    "--switch-label-color": "var(--switch-label-inactive)",
+    "--switch-label-color": "var(--section-background-1)",
   } as CSSProperties;
 
   const activeStyles = isSelected ? switchLabelOnStyles : switchLabelOffStyles;
