@@ -4,3 +4,7 @@ export interface SVGProps {
   className?: string;
   gradientId?: string;
 }
+
+export type ImageOrientation = "vertical" | "horizontal";
+
+export type ImagePosition = "left" | "right";

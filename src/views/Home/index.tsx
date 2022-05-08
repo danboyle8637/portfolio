@@ -4,6 +4,8 @@ import { Header } from "../../sections/HomeHeader";
 import { HomeToggleExperience } from "../../sections/HomeToggleExperience";
 import { ProjectList } from "../../sections/ProjectList";
 
+import { marketingProjectList } from "../../../data/marketingProjects";
+
 const ViewContainer = styled.section`
   display: flex;
   flex-direction: column;
@@ -16,7 +18,7 @@ export const HomeView = () => {
     <ViewContainer>
       <Header />
       <HomeToggleExperience />
-      <ProjectList />
+      <ProjectList projects={marketingProjectList} />
     </ViewContainer>
   );
 };
