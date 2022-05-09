@@ -1,9 +1,9 @@
 import styled from "styled-components";
 
-import { text36, text24 } from "../../styles/typography";
+import { text36, text20 } from "../../styles/typography";
 import { Business } from "../../types/data";
 
-interface HeadlineProps {
+interface ProjectTitleProps {
   business: Business;
 }
 
@@ -17,7 +17,7 @@ const Container = styled.h1`
 `;
 
 const BusinessHeadline = styled.span`
-  ${text24}
+  ${text20}
   color: var(--base-text-color);
   font-weight: 500;
   text-transform: uppercase;
@@ -31,7 +31,10 @@ const PowerHeadline = styled.span`
   color: var(--base-text-color);
 `;
 
-export const Headline: React.FC<HeadlineProps> = ({ business, children }) => {
+export const ProjectTitle: React.FC<ProjectTitleProps> = ({
+  business,
+  children,
+}) => {
   const businessHeadline =
     business === "fww" ? "fit women's weekly" : "this time fitness";
 

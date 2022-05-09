@@ -1,14 +1,9 @@
 import { CSSProperties } from "react";
 import styled from "styled-components";
 
-import { text36, text16 } from "../../styles/typography";
-import { VerticalIphone } from "../../components/cssDrawings/VerticalIphone";
-import { HorizontalIphone } from "../../components/cssDrawings/HorizontalIphont";
-import { ProjectListingImage } from "../../components/images/ProjectListingImage";
-import { Headline } from "./Headline";
 import { ProjectDescription } from "./ProjectDescription";
-import { InternalButton } from "../../components/buttons/InternalButton";
-import { ExternalButton } from "../../components/buttons/ExternalButton";
+import { VerticalProjectImage } from "./VerticalProjectImage";
+import { HorizontalProjectImage } from "./HorizontalProjectImage";
 import { useMatchMedia } from "../../hooks/useMatchMedia";
 import { Business, Techology } from "../../types/data";
 import { ImageOrientation, ImagePosition } from "../../types/components";
@@ -29,50 +24,32 @@ interface ProjectListingProps {
   titleTag: string;
 }
 
-const Container = styled.div`
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-auto-rows: min-content;
+const VerticalContainer = styled.div`
+  display: flex;
+  flex-direction: column;
   gap: 40px;
-  justify-items: center;
+  justify-content: center;
   align-items: center;
   width: 100%;
+  max-width: 800px;
   ${sizes.aboveMobile} {
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
+    flex-direction: row;
+    gap: 40px;
   }
 `;
 
-const ImageContainer = styled.div`
-  order: var(--image-position, 0);
-  width: 300px;
-`;
-
-const DescriptionContainer = styled.div`
+const HorizontalContainer = styled.div`
   display: grid;
   grid-template-columns: 1fr;
   grid-auto-rows: min-content;
   gap: 40px;
   justify-items: center;
   width: 100%;
-`;
-
-const CopyContainer = styled.div`
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-auto-rows: min-content;
-  gap: 20px;
-  justify-items: start;
-  width: 100%;
-`;
-
-const Paragraph = styled.p`
-  ${text16}
-  line-height: 1.6;
-`;
-
-const ButtonContainer = styled.div`
-  width: 240px;
+  max-width: 800px;
+  ${sizes.aboveMobile} {
+    justify-self: start;
+    width: 600px;
+  }
 `;
 
 export const ProjectListing: React.FC<ProjectListingProps> = ({
@@ -91,52 +68,48 @@ export const ProjectListing: React.FC<ProjectListingProps> = ({
 }) => {
   const isAboveMobile = useMatchMedia();
 
-  const listingDescription = description.map((para, i) => {
-    return <Paragraph key={i}>{para}</Paragraph>;
-  });
-
-  const verticalIphoneWidth = isAboveMobile ? 340 : 280;
-
-  const projectImage =
-    imageOrientation === "vertical" ? (
-      <VerticalIphone width={verticalIphoneWidth}>
-        <ProjectListingImage
-          imageUrl={imageUrl}
-          altTag={altTag}
-          titleTag={titleTag}
-          orientation={imageOrientation}
-        />
-      </VerticalIphone>
-    ) : (
-      <HorizontalIphone width={600}>
-        <ProjectListingImage
-          imageUrl={imageUrl}
-          altTag={altTag}
-          titleTag={titleTag}
-          orientation={imageOrientation}
-        />
-      </HorizontalIphone>
-    );
-
-  const imageStyles = {
-    "--image-position": imagePosition === "left" && isAboveMobile ? 1 : 0,
+  const projectListStyles = {
+    "--project-image-justify":
+      imagePosition === "left" && isAboveMobile ? "end" : "start",
+    "--project-description-order":
+      imagePosition === "left" && isAboveMobile ? 1 : 0,
   } as CSSProperties;
 
+  const verticalListing = (
+    <VerticalContainer style={projectListStyles}>
+      <ProjectDescription
+        business={business}
+        projectTitle={title}
+        descriptionArray={description}
+        slug={slug}
+      />
+      <VerticalProjectImage
+        projectTitle={title}
+        imageUrl={imageUrl}
+        altTag={altTag}
+        titleTag={titleTag}
+      />
+    </VerticalContainer>
+  );
+
+  const horizontalListing = (
+    <HorizontalContainer>
+      <ProjectDescription
+        business={business}
+        projectTitle={title}
+        descriptionArray={description}
+        slug={slug}
+      />
+      <HorizontalProjectImage
+        projectTitle={title}
+        imageUrl={imageUrl}
+        altTag={altTag}
+        titleTag={titleTag}
+      />
+    </HorizontalContainer>
+  );
+
   return (
-    <Container>
-      {isAboveMobile ? (
-        <ImageContainer style={imageStyles}>{projectImage}</ImageContainer>
-      ) : null}
-      <DescriptionContainer>
-        <Headline business={business}>{title}</Headline>
-        {!isAboveMobile ? (
-          <ImageContainer style={imageStyles}>{projectImage}</ImageContainer>
-        ) : null}
-        <CopyContainer>{listingDescription}</CopyContainer>
-        <ButtonContainer>
-          <InternalButton slug={slug}>Project Details</InternalButton>
-        </ButtonContainer>
-      </DescriptionContainer>
-    </Container>
+    <>{imageOrientation === "vertical" ? verticalListing : horizontalListing}</>
   );
 };

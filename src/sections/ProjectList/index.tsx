@@ -14,6 +14,7 @@ const Container = styled.section`
   grid-template-columns: 1fr;
   grid-auto-rows: min-content;
   gap: 120px;
+  justify-items: center;
   width: 100%;
   max-width: 1200px;
 `;

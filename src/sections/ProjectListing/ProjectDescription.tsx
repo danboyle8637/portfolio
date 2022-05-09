@@ -1,15 +1,27 @@
 import styled from "styled-components";
 
 import { text36, text16 } from "../../styles/typography";
+import { ProjectBorder } from "./ProjectBorder";
+import { ProjectTitle } from "./ProjectTitle";
 import { InternalButton } from "../../components/buttons/InternalButton";
+import { Business } from "../../types/data";
 
 interface ProjectDescriptionProps {
+  business: Business;
   projectTitle: string;
   descriptionArray: string[];
   slug: string;
 }
 
 const Container = styled.div`
+  order: var(--project-description-order, 0);
+  display: grid;
+  grid-template-columns: min-content 1fr;
+  gap: 12px;
+  width: 100%;
+`;
+
+const DescriptionContainer = styled.div`
   display: grid;
   grid-template-columns: 1fr;
   grid-auto-rows: min-content;
@@ -18,7 +30,7 @@ const Container = styled.div`
   width: 100%;
 `;
 
-const DescriptionContainer = styled.div`
+const Description = styled.div`
   display: grid;
   grid-template-columns: 1fr;
   grid-auto-rows: min-content;
@@ -41,6 +53,7 @@ const ButtonContainer = styled.div`
 `;
 
 export const ProjectDescription: React.FC<ProjectDescriptionProps> = ({
+  business,
   projectTitle,
   descriptionArray,
   slug,
@@ -51,11 +64,14 @@ export const ProjectDescription: React.FC<ProjectDescriptionProps> = ({
 
   return (
     <Container>
-      <Headline>{projectTitle}</Headline>
-      <DescriptionContainer>{description}</DescriptionContainer>
-      <ButtonContainer>
-        <InternalButton slug={slug}>Project Details</InternalButton>
-      </ButtonContainer>
+      <ProjectBorder />
+      <DescriptionContainer>
+        <ProjectTitle business={business}>{projectTitle}</ProjectTitle>
+        <Description>{description}</Description>
+        <ButtonContainer>
+          <InternalButton slug={slug}>Project Details</InternalButton>
+        </ButtonContainer>
+      </DescriptionContainer>
     </Container>
   );
 };
